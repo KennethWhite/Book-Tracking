@@ -3,7 +3,8 @@ name: npm test
 on:
   pull_request:
     branches:
-      - '**'
+      - main
+      - 'releases/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
