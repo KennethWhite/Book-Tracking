@@ -3,19 +3,28 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookTracking;
 
-public class AppDbContext : DbContext
+public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
     public DbSet<Book> Books { get; set; }
     public DbSet<Author> Authors { get; set; }
+    public DbSet<Tag> Tags { get; set; }
     
-    public string DbPath { get; private set; }
-    
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        IConfigurationRoot configuration = new ConfigurationBuilder()
-            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-            .AddJsonFile("appsettings.json")
-            .Build();
-        optionsBuilder.UseNpgsql(configuration.GetConnectionString("BookDBConnection"));
+        modelBuilder.Entity<Author>()
+            .HasMany(a => a.Books)
+            .WithOne(b => b.Author)
+            .HasForeignKey(b => b.AuthorId);
+        
+        modelBuilder.Entity<Tag>()
+            .HasMany(t => t.Books)
+            .WithMany(b => b.Tags);
+        
+        modelBuilder.Entity<Book>()
+            .HasOne(b => b.Narrator)
+            .WithMany()
+            .HasForeignKey(b => b.NarratorId);
+
+        base.OnModelCreating(modelBuilder);
     }
 }
