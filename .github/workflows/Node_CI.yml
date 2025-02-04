@@ -1,6 +1,8 @@
 name: Node.js CI
 
 on:
+  push:
+    branches: [ "main" ]
   pull_request:
     branches:
       - main
@@ -14,15 +16,18 @@ jobs:
   test_pull_request:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc'
+          node-version: '22.11'
           cache: 'npm'
-          cache-dependency-path: 'package-lock.json'
+          cache-dependency-path: './BookTracking.Web/package-lock.json'
       - name: Install dependencies
-        run: yarn
+        working-directory: ./BookTracking.Web
+        run: npm install
       - name: Run build
+        working-directory: ./BookTracking.Web
         run: npm run build
       - name: Run tests
+        working-directory: ./BookTracking.Web
         run: npm test
