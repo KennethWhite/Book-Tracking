@@ -21,9 +21,13 @@ jobs:
         with:
           node-version: '22.11'
           cache: 'npm'
+          cache-dependency-path: './BookTracking.Web/package-lock.json'
       - name: Install dependencies
+        working-directory: ./BookTracking.Web
         run: npm install
       - name: Run build
+        working-directory: ./BookTracking.Web
         run: npm run build
       - name: Run tests
+        working-directory: ./BookTracking.Web
         run: npm test
