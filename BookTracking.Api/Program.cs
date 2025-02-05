@@ -20,10 +20,12 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+using (var scope = app.Services.CreateScope())
 {
-    app.MapOpenApi();
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await dbContext.Database.EnsureCreatedAsync();
 }
+app.MapOpenApi();
 
 app.UseHttpsRedirection();
 
