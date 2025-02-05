@@ -9,8 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevScripts", "DevScripts", "{4A4848F7-C29E-46DE-8ABF-944E176AA922}"
 	ProjectSection(SolutionItems) = preProject
-		exportDb.sh = exportDb.sh
-		importDb.sh = importDb.sh
+		dbBackupRestore.ps1 = dbBackupRestore.ps1
 	EndProjectSection
 EndProject
 Global
