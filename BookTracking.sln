@@ -7,6 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		localDbCompose.yaml = localDbCompose.yaml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevScripts", "DevScripts", "{4A4848F7-C29E-46DE-8ABF-944E176AA922}"
+	ProjectSection(SolutionItems) = preProject
+		dbBackupRestore.ps1 = dbBackupRestore.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
