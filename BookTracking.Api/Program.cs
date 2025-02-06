@@ -8,7 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-
 builder.Services.AddDbContextPool<AppDbContext>(opt =>
     opt.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
@@ -28,8 +27,6 @@ using (var scope = app.Services.CreateScope())
 app.MapOpenApi();
 
 app.UseHttpsRedirection();
-
-
 
 app.MapGet("/book/{id}", async (Guid id, AppDbContext db) =>
     {
@@ -62,7 +59,6 @@ app.MapPost("/book/add", async (Book book, AppDbContext db) =>
 
         return Results.Created($"/book/{book.Id}", book);
     });
-
 
 app.Run();
 
