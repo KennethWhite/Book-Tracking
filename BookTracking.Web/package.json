@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "typecheck": "tsc --noEmit",
-    "lint": "npm run eslint . --cache",
+    "lint": "eslint . --cachet",
     "lint:fix": "eslint src --fix",
     "stylelint": "stylelint '**/*.css' --cache",
     "prettier": "prettier --check \"**/*.{ts,tsx}\"",
