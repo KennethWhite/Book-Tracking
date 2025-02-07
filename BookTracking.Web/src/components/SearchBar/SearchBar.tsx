@@ -5,9 +5,10 @@ interface SearchBarProps {
   onSearchChange: (text: string) => void;
   onTagsChange: (tags: string[]) => void;
   tags: string[];
+  currentValue: string;
 }
 
-export function SearchBar({ onSearchChange, onTagsChange, tags }: SearchBarProps) {
+export function SearchBar({ onSearchChange, onTagsChange, tags, currentValue }: SearchBarProps) {
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     onSearchChange(event.target.value);
   };
@@ -22,6 +23,7 @@ export function SearchBar({ onSearchChange, onTagsChange, tags }: SearchBarProps
         <TextInput
           description="Title, Author, Narrator, Tag"
           placeholder="Search"
+          value={currentValue}
           onChange={handleInputChange}
         />
         <MultiSelect

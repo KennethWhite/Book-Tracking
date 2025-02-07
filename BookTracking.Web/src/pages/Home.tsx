@@ -23,6 +23,7 @@ export function Home() {
           onSearchChange={handleSearchChanged}
           onTagsChange={handleTagsChanged}
           tags={['Fantasy', 'Sci-Fi', 'Cultivation', 'Magic']}
+          currentValue={searchText}
         />
       </Container>
     </>
