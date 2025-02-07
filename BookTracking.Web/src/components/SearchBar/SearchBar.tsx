@@ -1,6 +1,5 @@
 ﻿import { ChangeEvent } from 'react';
-import { Container, Flex, Grid, Group, MultiSelect, TextInput } from '@mantine/core';
-import { Tag } from '../../models/Tag';
+import { Container, Group, MultiSelect, TextInput } from '@mantine/core';
 
 interface SearchBarProps {
   onSearchChange: (text: string) => void;
