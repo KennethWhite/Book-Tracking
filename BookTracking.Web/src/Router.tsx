@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Home } from './pages/Home.tsx';
+import { Home } from './pages/Home';
 import { Layout } from './pages/Layout';
 import { routes } from './routes';
 
