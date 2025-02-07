@@ -31,6 +31,7 @@ export function SearchBar({ onSearchChange, onTagsChange, tags, currentValue }: 
           placeholder="Pick Genre"
           data={tags}
           onChange={handleTagsChange}
+          searchable
           clearable
         />
       </Group>
