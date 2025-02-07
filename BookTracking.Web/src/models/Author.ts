@@ -2,8 +2,7 @@
 
 export interface Author {
   authorId: string;
-  firstName: string;
-  lastName: string;
+  name: string;
   books: Book[];
-  authorPage: string;
+  authorPage: URL;
 }

@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { HomePage } from './pages/Home.page';
+import { Home } from './pages/Home';
 import { Layout } from './pages/Layout';
 import { routes } from './routes';
 
@@ -9,7 +9,7 @@ export const AppRouter = (): ReactElement => {
     <BrowserRouter>
       <Routes>
         <Route path={routes.Home} element={<Layout />}>
-          <Route index element={<HomePage />} />
+          <Route index element={<Home />} />
         </Route>
       </Routes>
     </BrowserRouter>
