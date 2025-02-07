@@ -7,11 +7,11 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint . --cachet",
+    "lint": "eslint . --cache",
     "lint:fix": "eslint src --fix",
     "stylelint": "stylelint '**/*.css' --cache",
     "prettier": "prettier --check \"**/*.{ts,tsx}\"",
-    "prettier:format": "prettier --loglevel warn --write \"**/*.{tsx,ts}\"",
+    "prettier:format": "prettier --log-level warn --write \"**/*.{tsx,ts}\"",
     "vitest": "vitest run",
     "vitest:watch": "vitest",
     "test": "npm run typecheck && npm run prettier:format && npm run lint && npm run vitest && npm run build"
