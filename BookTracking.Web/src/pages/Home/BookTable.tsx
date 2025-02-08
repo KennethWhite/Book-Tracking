@@ -1,5 +1,5 @@
 import { Fragment, ReactNode } from 'react';
-import { Badge, Button, Collapse, Flex, Image, Table } from '@mantine/core';
+import { Anchor, Badge, Button, Collapse, Flex, Image, Table } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Book } from '../../models/Book';
 import { ExpandedBookRow } from './ExpandedBookRow';
@@ -57,7 +57,11 @@ export const BookTable = () => {
         <Table.Td>
           <Image radius="md" src={book.coverImage} h={120} fit="contain" />
         </Table.Td>
-        <Table.Td>{book.title}</Table.Td>
+        <Table.Td>
+          <Anchor href={book.link.href} target="_blank">
+            {book.title}
+          </Anchor>
+        </Table.Td>
         <Table.Td>{book.author}</Table.Td>
         <Table.Td>
           {' '}
