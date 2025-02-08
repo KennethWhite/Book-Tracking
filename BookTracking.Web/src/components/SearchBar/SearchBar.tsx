@@ -8,7 +8,7 @@ interface SearchBarProps {
   currentValue: string;
 }
 
-export function SearchBar({ onSearchChange, onTagsChange, tags, currentValue }: SearchBarProps) {
+export const SearchBar = ({ onSearchChange, onTagsChange, tags, currentValue }: SearchBarProps) => {
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     onSearchChange(event.target.value);
   };
@@ -37,4 +37,4 @@ export function SearchBar({ onSearchChange, onTagsChange, tags, currentValue }: 
       </Group>
     </Container>
   );
-}
+};

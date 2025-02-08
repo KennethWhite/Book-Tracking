@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Container } from '@mantine/core';
-import { SearchBar } from '../components/SearchBar/SearchBar';
+import { SearchBar } from '../../components/SearchBar/SearchBar';
+import { BookTable } from './BookTable';
 
-export function Home() {
+export const Home = () => {
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const [searchText, setSearchText] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -25,7 +26,8 @@ export function Home() {
           tags={['Fantasy', 'Sci-Fi', 'Cultivation', 'Magic']}
           currentValue={searchText}
         />
+        <BookTable />
       </Container>
     </>
   );
-}
+};

@@ -5,18 +5,20 @@ export interface Book {
   Id: string;
   title: string;
   authorId: string;
-  author: Author;
+  // author: Author;
+  author: string;
   narratorId?: string;
   narrator?: Author;
   releaseDate?: string;
   length?: string;
-  tags: Tag[];
+  // tags: Tag[];
+  tags: string[];
   rating?: number;
   dateFirstRead?: string;
   dateFinished?: string;
   lastReadBookOrChapter?: string;
   notes?: string;
-  coverImage?: URL;
+  coverImage?: URL | string;
   link: URL;
   audioBookLink?: URL;
 }
