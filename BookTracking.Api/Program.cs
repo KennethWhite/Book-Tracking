@@ -1,5 +1,6 @@
 using BookTracking;
 using BookTracking.Models;
+using BookTracking.Routes;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,41 +25,12 @@ using (var scope = app.Services.CreateScope())
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     await dbContext.Database.EnsureCreatedAsync();
 }
-app.MapOpenApi();
 
+app.AddBookRoutes();
+app.AddHealthRoutes();
+
+app.MapOpenApi();
 app.UseHttpsRedirection();
 
-app.MapGet("/book/{id}", async (Guid id, AppDbContext db) =>
-    {
-        var book = await  db.Books
-            .Include(b => b.Author)
-            .FirstOrDefaultAsync(b => b.Id == id);
-
-        if (book is null)
-        {
-            return Results.NotFound();
-        }
-
-        return Results.Ok(book);
-    })
-    .WithName("GetBookById");
-
-app.MapGet("/books", async (AppDbContext db) =>
-{
-    var books = await db.Books
-        .Include(b => b.Author)
-        .ToListAsync();
-
-    return Results.Ok(books);
-});
-
-app.MapPost("/book/add", async (Book book, AppDbContext db) =>
-    {
-        await db.Books.AddAsync(book);
-        await db.SaveChangesAsync();
-
-        return Results.Created($"/book/{book.Id}", book);
-    });
 
 app.Run();
-
