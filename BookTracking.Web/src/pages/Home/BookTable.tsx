@@ -1,11 +1,19 @@
-import { Fragment, ReactNode } from 'react';
+import { Fragment, ReactNode, useState } from 'react';
 import { Anchor, Badge, Button, Collapse, Flex, Image, Table } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Book } from '../../models/Book';
 import { ExpandedBookRow } from './ExpandedBookRow';
 
+import './BookTable.css';
+
 export const BookTable = () => {
-  const [opened, { toggle }] = useDisclosure(false);
+  const [openedRows, setOpenedRows] = useState<number[]>([]);
+
+  const toggleOpened = (index: number) => {
+    setOpenedRows((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
+  };
 
   const rowData: Book[] = [
     {
@@ -64,7 +72,6 @@ export const BookTable = () => {
         </Table.Td>
         <Table.Td>{book.author}</Table.Td>
         <Table.Td>
-          {' '}
           <Flex wrap="wrap" gap="sm">
             {book.tags.map((tag, index) => (
               <Badge key={index} color="blue" variant="filled">
@@ -76,14 +83,17 @@ export const BookTable = () => {
         <Table.Td>{book.rating}</Table.Td>
         <Table.Td>{book.lastReadBookOrChapter}</Table.Td>
         <Table.Td>
-          {/*TODO expand only the selected row*/}
-          <Button onClick={toggle}>More</Button>
+          <Button onClick={() => toggleOpened(index)}>More</Button>
         </Table.Td>
       </Table.Tr>
       {/*TODO CSS animation*/}
-      <Table.Tr hidden={!opened}>
+      <Table.Tr
+      // hidden={!openedRows.includes(index)}
+      >
         <Table.Td colSpan={6}>
-          <ExpandedBookRow book={book} />
+          <div className={openedRows.includes(index) ? 'row-expanded' : 'row-collapsed'}>
+            <ExpandedBookRow book={book} />
+          </div>
         </Table.Td>
       </Table.Tr>
     </>
