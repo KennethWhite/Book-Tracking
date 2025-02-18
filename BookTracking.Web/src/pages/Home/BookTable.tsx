@@ -6,6 +6,50 @@ import { ExpandedBookRow } from './ExpandedBookRow';
 
 import './BookTable.css';
 
+const rowData: Book[] = [
+  {
+    Id: '1',
+    authorId: '1',
+    link: new URL('https://www.google.com'),
+    coverImage: './src/assets/testImage.webp',
+    title: 'Book Title',
+    author: 'Author',
+    tags: ['Fantasy', 'Magic'],
+    rating: 7,
+  },
+  {
+    Id: '2',
+    authorId: '2',
+    link: new URL('https://www.google.com'),
+    coverImage: './src/assets/testImage.webp',
+    title: 'Book Title 2',
+    author: 'Author',
+    tags: ['Fantasy', 'Magic'],
+    rating: 8,
+  },
+  {
+    Id: '3',
+    authorId: '3',
+    link: new URL('https://www.google.com'),
+    coverImage: './src/assets/testImage.webp',
+    title: 'Book Title 3',
+    author: 'Author',
+    tags: ['Fantasy', 'Magic', 'Sci-Fi', 'History', 'Progression', 'Cultivation', 'Fantasy'],
+    rating: 9,
+  },
+  {
+    Id: '4',
+    authorId: '4',
+    link: new URL('https://www.google.com'),
+    coverImage: './src/assets/testImage.webp',
+    title: 'Book Title 4',
+    author: 'Author',
+    tags: ['Fantasy', 'Magic'],
+    rating: 10,
+    lastReadBookOrChapter: 'Ch. 23',
+  },
+];
+
 export const BookTable = () => {
   const [openedRows, setOpenedRows] = useState<number[]>([]);
 
@@ -15,53 +59,9 @@ export const BookTable = () => {
     );
   };
 
-  const rowData: Book[] = [
-    {
-      Id: '1',
-      authorId: '1',
-      link: new URL('https://www.google.com'),
-      coverImage: './src/assets/testImage.webp',
-      title: 'Book Title',
-      author: 'Author',
-      tags: ['Fantasy', 'Magic'],
-      rating: 7,
-    },
-    {
-      Id: '2',
-      authorId: '2',
-      link: new URL('https://www.google.com'),
-      coverImage: './src/assets/testImage.webp',
-      title: 'Book Title 2',
-      author: 'Author',
-      tags: ['Fantasy', 'Magic'],
-      rating: 8,
-    },
-    {
-      Id: '3',
-      authorId: '3',
-      link: new URL('https://www.google.com'),
-      coverImage: './src/assets/testImage.webp',
-      title: 'Book Title 3',
-      author: 'Author',
-      tags: ['Fantasy', 'Magic', 'Sci-Fi', 'History', 'Progression', 'Cultivation', 'Fantasy'],
-      rating: 9,
-    },
-    {
-      Id: '4',
-      authorId: '4',
-      link: new URL('https://www.google.com'),
-      coverImage: './src/assets/testImage.webp',
-      title: 'Book Title 4',
-      author: 'Author',
-      tags: ['Fantasy', 'Magic'],
-      rating: 10,
-      lastReadBookOrChapter: 'Ch. 23',
-    },
-  ];
-
   const rows = rowData.map((book, index) => (
     <>
-      <Table.Tr key={index}>
+      <Table.Tr key={book.Id}>
         <Table.Td>
           <Image radius="md" src={book.coverImage} h={120} fit="contain" />
         </Table.Td>
