@@ -2,7 +2,7 @@
 import { Tag } from './Tag';
 
 export interface Book {
-  Id: string;
+  id: string;
   title: string;
   authorId: string;
   // author: Author;

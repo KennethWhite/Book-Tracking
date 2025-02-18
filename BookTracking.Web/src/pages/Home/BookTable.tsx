@@ -8,7 +8,7 @@ import './BookTable.css';
 
 const rowData: Book[] = [
   {
-    Id: '1',
+    id: '1',
     authorId: '1',
     link: new URL('https://www.google.com'),
     coverImage: './src/assets/testImage.webp',
@@ -18,7 +18,7 @@ const rowData: Book[] = [
     rating: 7,
   },
   {
-    Id: '2',
+    id: '2',
     authorId: '2',
     link: new URL('https://www.google.com'),
     coverImage: './src/assets/testImage.webp',
@@ -28,7 +28,7 @@ const rowData: Book[] = [
     rating: 8,
   },
   {
-    Id: '3',
+    id: '3',
     authorId: '3',
     link: new URL('https://www.google.com'),
     coverImage: './src/assets/testImage.webp',
@@ -38,7 +38,7 @@ const rowData: Book[] = [
     rating: 9,
   },
   {
-    Id: '4',
+    id: '4',
     authorId: '4',
     link: new URL('https://www.google.com'),
     coverImage: './src/assets/testImage.webp',
@@ -61,7 +61,7 @@ export const BookTable = () => {
 
   const rows = rowData.map((book, index) => (
     <>
-      <Table.Tr key={book.Id}>
+      <Table.Tr key={book.id}>
         <Table.Td>
           <Image radius="md" src={book.coverImage} h={120} fit="contain" />
         </Table.Td>
