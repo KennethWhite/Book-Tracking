@@ -1,6 +1,6 @@
 import { Fragment, useCallback, useState } from 'react';
 import { Anchor, Badge, Button, Flex, Image, Table } from '@mantine/core';
-import { Book } from '../../models/Book';
+import { Book } from '@/models/Book';
 import { ExpandedBookRow } from './ExpandedBookRow';
 
 import './BookTable.css';

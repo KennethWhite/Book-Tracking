@@ -1,6 +1,6 @@
 ﻿import { ReactNode } from 'react';
 import { Table } from '@mantine/core';
-import { Book } from '../../models/Book';
+import { Book } from '@/models/Book';
 
 interface ExpandedBookRowProps {
   book: Book;
