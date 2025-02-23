@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Container } from '@mantine/core';
+import { Container, Modal } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import { SearchBar } from '@/components/SearchBar/SearchBar';
 import { AddBook } from '@/pages/Home/AddBook';
 import { BookTable } from './BookTable';
@@ -8,7 +9,8 @@ export const Home = () => {
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const [searchText, setSearchText] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [showModal, setShowModal] = useState(false);
+  const [opened, { open, close }] = useDisclosure(false);
+
   /* eslint-enable @typescript-eslint/no-unused-vars */
 
   const handleSearchChanged = (text: string) => {
@@ -20,7 +22,11 @@ export const Home = () => {
   };
 
   const handleAddBookClicked = () => {
-    setShowModal(!showModal);
+    if (opened) {
+      close();
+    } else {
+      open();
+    }
   };
 
   return (
@@ -33,7 +39,21 @@ export const Home = () => {
           currentValue={searchText}
           onAddBookClicked={handleAddBookClicked}
         />
-        {showModal && <AddBook onClose={() => setShowModal(false)} />}
+        <Modal
+          opened={opened}
+          onClose={close}
+          title="Add book"
+          centered
+          size="auto"
+          overlayProps={{
+            backgroundOpacity: 0.55,
+            blur: 3,
+          }}
+          transitionProps={{ transition: 'fade', duration: 200, timingFunction: 'linear' }}
+        >
+          <AddBook test="This is test text" />
+        </Modal>
+
         <BookTable />
       </Container>
     </>
