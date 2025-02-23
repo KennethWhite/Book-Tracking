@@ -1,6 +1,5 @@
 ﻿import { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
-import { Anchor, NavLink, Table } from '@mantine/core';
+import { Table } from '@mantine/core';
 import { Book } from '../../models/Book';
 
 interface ExpandedBookRowProps {
