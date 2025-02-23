@@ -2,10 +2,11 @@
 import { Tag } from './Tag';
 
 export interface Book {
-  Id: string;
+  id: string;
   title: string;
   authorId: string;
-  author: Author;
+  // author: Author;
+  author: string;
   narratorId?: string;
   narrator?: Author;
   releaseDate?: string;
@@ -16,7 +17,7 @@ export interface Book {
   dateFinished?: string;
   lastReadBookOrChapter?: string;
   notes?: string;
-  coverImage?: URL;
+  coverImage?: URL | string;
   link: URL;
   audioBookLink?: URL;
 }
