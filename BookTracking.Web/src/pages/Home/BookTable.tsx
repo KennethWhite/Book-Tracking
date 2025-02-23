@@ -1,6 +1,5 @@
-import { Fragment, ReactNode, useState } from 'react';
-import { Anchor, Badge, Button, Collapse, Flex, Image, Table } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { Fragment, useCallback, useState } from 'react';
+import { Anchor, Badge, Button, Flex, Image, Table } from '@mantine/core';
 import { Book } from '../../models/Book';
 import { ExpandedBookRow } from './ExpandedBookRow';
 
@@ -14,7 +13,10 @@ const rowData: Book[] = [
     coverImage: './src/assets/testImage.webp',
     title: 'Book Title',
     author: 'Author',
-    tags: ['Fantasy', 'Magic'],
+    tags: [
+      { name: 'Fantasy', id: 'fid1', books: [] },
+      { name: 'Magic', id: 'mid1', books: [] },
+    ],
     rating: 7,
   },
   {
@@ -24,7 +26,10 @@ const rowData: Book[] = [
     coverImage: './src/assets/testImage.webp',
     title: 'Book Title 2',
     author: 'Author',
-    tags: ['Fantasy', 'Magic'],
+    tags: [
+      { name: 'Fantasy', id: 'fid2', books: [] },
+      { name: 'Magic', id: 'mid2', books: [] },
+    ],
     rating: 8,
   },
   {
@@ -34,7 +39,15 @@ const rowData: Book[] = [
     coverImage: './src/assets/testImage.webp',
     title: 'Book Title 3',
     author: 'Author',
-    tags: ['Fantasy', 'Magic', 'Sci-Fi', 'History', 'Progression', 'Cultivation', 'Fantasy'],
+    tags: [
+      { name: 'Fantasy', id: 'fid3', books: [] },
+      { name: 'Magic', id: 'mid3', books: [] },
+      { name: 'Sci-Fi', id: 'sid3', books: [] },
+      { name: 'History', id: 'hid3', books: [] },
+      { name: 'Progression', id: 'pid3', books: [] },
+      { name: 'Cultivation', id: 'cid3', books: [] },
+      { name: 'System Apocalypse', id: 'said3', books: [] },
+    ],
     rating: 9,
   },
   {
@@ -44,24 +57,27 @@ const rowData: Book[] = [
     coverImage: './src/assets/testImage.webp',
     title: 'Book Title 4',
     author: 'Author',
-    tags: ['Fantasy', 'Magic'],
+    tags: [
+      { name: 'Fantasy', id: 'fid4', books: [] },
+      { name: 'Magic', id: 'mid4', books: [] },
+    ],
     rating: 10,
     lastReadBookOrChapter: 'Ch. 23',
   },
 ];
 
 export const BookTable = () => {
-  const [openedRows, setOpenedRows] = useState<number[]>([]);
+  const [openedRows, setOpenedRows] = useState<string[]>([]);
 
-  const toggleOpened = (index: number) => {
+  const toggleOpened = useCallback((bookId: string) => {
     setOpenedRows((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+      prev.includes(bookId) ? prev.filter((id) => id !== bookId) : [...prev, bookId]
     );
-  };
+  }, []);
 
-  const rows = rowData.map((book, index) => (
-    <>
-      <Table.Tr key={book.id}>
+  const rows = rowData.map((book) => (
+    <Fragment key={book.id}>
+      <Table.Tr>
         <Table.Td>
           <Image radius="md" src={book.coverImage} h={120} fit="contain" />
         </Table.Td>
@@ -73,9 +89,9 @@ export const BookTable = () => {
         <Table.Td>{book.author}</Table.Td>
         <Table.Td>
           <Flex wrap="wrap" gap="sm">
-            {book.tags.map((tag, index) => (
-              <Badge key={index} color="blue" variant="filled">
-                {tag}
+            {book.tags.map((tag) => (
+              <Badge key={tag.id} color="blue" variant="filled">
+                {tag.name}
               </Badge>
             ))}
           </Flex>
@@ -83,7 +99,7 @@ export const BookTable = () => {
         <Table.Td>{book.rating}</Table.Td>
         <Table.Td>{book.lastReadBookOrChapter}</Table.Td>
         <Table.Td>
-          <Button onClick={() => toggleOpened(index)}>More</Button>
+          <Button onClick={() => toggleOpened(book.id)}>More</Button>
         </Table.Td>
       </Table.Tr>
       {/*TODO CSS animation*/}
@@ -91,16 +107,16 @@ export const BookTable = () => {
       // hidden={!openedRows.includes(index)}
       >
         <Table.Td colSpan={6}>
-          <div className={openedRows.includes(index) ? 'row-expanded' : 'row-collapsed'}>
+          <div className={openedRows.includes(book.id) ? 'row-expanded' : 'row-collapsed'}>
             <ExpandedBookRow book={book} />
           </div>
         </Table.Td>
       </Table.Tr>
-    </>
+    </Fragment>
   ));
 
   return (
-    <div>
+    <div className="book-table">
       <Table stickyHeader stickyHeaderOffset={60} highlightOnHover withRowBorders={false}>
         <Table.Thead>
           <Table.Tr>

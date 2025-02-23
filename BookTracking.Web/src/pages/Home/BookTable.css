@@ -1,13 +1,17 @@
-﻿.row-expanded {
-    max-height: 500px; 
+﻿.book-table .row-expanded {
+    max-height: 500px;
     overflow: hidden;
     transition: max-height 0.3s ease;
     pointer-events: none;
 }
 
-.row-collapsed {
+.book-table .row-collapsed {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
-    pointer-events: auto;
+    pointer-events: none;
+}
+
+.book-table .row-collapsed:hover {
+    background-color: inherit; 
 }

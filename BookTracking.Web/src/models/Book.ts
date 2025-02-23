@@ -11,8 +11,7 @@ export interface Book {
   narrator?: Author;
   releaseDate?: string;
   length?: string;
-  // tags: Tag[];
-  tags: string[];
+  tags: Tag[];
   rating?: number;
   dateFirstRead?: string;
   dateFinished?: string;
