@@ -44,14 +44,14 @@ export const Home = () => {
           onClose={close}
           title="Add book"
           centered
-          size="auto"
+          size="md"
           overlayProps={{
             backgroundOpacity: 0.55,
             blur: 3,
           }}
           transitionProps={{ transition: 'fade', duration: 200, timingFunction: 'linear' }}
         >
-          <AddBook test="This is test text" />
+          <AddBook />
         </Modal>
 
         <BookTable />
